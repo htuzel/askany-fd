@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import axios from 'axios';
 import SEO from '../components/SEO';
@@ -7,6 +7,20 @@ import BuyMeCoffeeButton from '../components/BuyMeCoffeeButton';
 export default function Home() {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
+  const [stats, setStats] = useState(null);
+
+  useEffect(() => {
+    const fetchStats = async () => {
+      try {
+        const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/stats`);
+        setStats(response.data);
+      } catch (error) {
+        console.error('Error fetching stats:', error);
+      }
+    };
+
+    fetchStats();
+  }, []);
 
   const createSession = async () => {
     try {
@@ -46,6 +60,32 @@ export default function Home() {
               {loading ? 'Creating...' : 'Create New Session'}
             </button>
 
+            {stats && (
+              <div className="mt-8 p-6 bg-white rounded-lg shadow-sm">
+                <p className="text-gray-600">
+                  Total Sessions Created: <span className="font-semibold text-blue-600">{stats.totalSessions}</span>
+                </p>
+                <p className="text-sm text-gray-500 mt-1">
+                  Last Updated: {new Date(stats.lastUpdated).toLocaleDateString()}
+                </p>
+              </div>
+            )}
+
+            <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8">
+              <Feature
+                title="Real-time Updates"
+                description="Questions appear instantly and are automatically sorted by votes."
+              />
+              <Feature
+                title="Anonymous Questions"
+                description="Participants can ask questions anonymously or with their name."
+              />
+              <Feature
+                title="Easy Management"
+                description="Mark questions as answered and keep track of discussions."
+              />
+            </div>
+
             <div className="mt-16">
               <BuyMeCoffeeButton className="mb-8" />
               
@@ -58,7 +98,7 @@ export default function Home() {
                     rel="noopener noreferrer"
                     className="text-blue-500 hover:text-blue-600"
                   >
-                    Hayrettin Tüzel
+                    Hakan Tüzel
                   </a>
                 </p>
                 <p>
@@ -75,5 +115,14 @@ export default function Home() {
         </div>
       </div>
     </>
+  );
+}
+
+function Feature({ title, description }) {
+  return (
+    <div className="bg-white p-6 rounded-lg shadow-sm">
+      <h3 className="text-lg font-semibold text-gray-900 mb-2">{title}</h3>
+      <p className="text-gray-600">{description}</p>
+    </div>
   );
 } 
