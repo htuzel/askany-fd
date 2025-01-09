@@ -30,11 +30,14 @@ export default function SessionPage() {
   }, [clientId]);
 
   useEffect(() => {
-    if (!slug) return;
+    if (!slug || !clientId) return;
 
     const fetchData = async () => {
       try {
-        const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/sessions/${slug}`);
+        const response = await axios.get(
+          `${process.env.NEXT_PUBLIC_API_URL}/api/sessions/${slug}`,
+          { params: { clientId } }
+        );
         setSession(response.data.session);
         setQuestions(response.data.questions);
         setLoading(false);
@@ -50,7 +53,7 @@ export default function SessionPage() {
     fetchData();
     const interval = setInterval(fetchData, 5000);
     return () => clearInterval(interval);
-  }, [slug, router]);
+  }, [slug, clientId, router]);
 
   if (loading) {
     return (
@@ -78,9 +81,20 @@ export default function SessionPage() {
         <div className="max-w-4xl mx-auto">
           <div className="bg-white shadow-sm rounded-lg p-6 mb-8">
             <div className="flex items-center justify-between flex-wrap gap-4">
-              <h1 className="text-2xl font-bold text-gray-900">
-                Live Q&A Session
-              </h1>
+              <div className="flex items-center gap-4">
+                <button
+                  onClick={() => router.push('/')}
+                  className="text-gray-600 hover:text-gray-900 flex items-center gap-2 transition-colors"
+                >
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                  </svg>
+                  <span>Back to Home</span>
+                </button>
+                <h1 className="text-2xl font-bold text-gray-900">
+                  Live Q&A Session
+                </h1>
+              </div>
               <div className="flex items-center gap-4">
                 <button
                   onClick={() => navigator.clipboard.writeText(window.location.href)}
@@ -106,6 +120,7 @@ export default function SessionPage() {
                 question={question}
                 isOwner={isOwner}
                 clientId={clientId}
+                sessionSlug={slug}
                 onQuestionUpdated={updatedQuestion => {
                   setQuestions(questions.map(q => 
                     q.id === updatedQuestion.id ? updatedQuestion : q
