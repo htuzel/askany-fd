@@ -112,12 +112,12 @@ export default function SessionPage() {
           </div>
 
           <QuestionForm session={session} onQuestionAdded={question => setQuestions([question, ...questions])} />
-
+          {console.log(questions)}
           <div className="mt-8 space-y-8">
             {/* Unanswered Questions */}
             <div className="space-y-4">
               {questions
-                .filter(q => !q.isAnswered)
+                .filter(q => !q.is_answered)
                 .sort((a, b) => b.upvoteCount - a.upvoteCount)
                 .map(question => (
                   <QuestionCard
@@ -134,7 +134,7 @@ export default function SessionPage() {
                   />
                 ))}
               
-              {questions.filter(q => !q.isAnswered).length === 0 && (
+              {questions.filter(q => !q.is_answered).length === 0 && (
                 <div className="text-center py-12 bg-white rounded-lg shadow-sm">
                   <p className="text-gray-500">
                     No questions yet. Be the first to ask!
@@ -144,12 +144,12 @@ export default function SessionPage() {
             </div>
 
             {/* Answered Questions */}
-            {questions.some(q => q.isAnswered) && (
+            {questions.some(q => q.is_answered) && (
               <div>
                 <h2 className="text-xl font-semibold text-gray-700 mb-4 border-t pt-8">Answered Questions</h2>
                 <div className="space-y-4">
                   {questions
-                    .filter(q => q.isAnswered)
+                    .filter(q => q.is_answered)
                     .sort((a, b) => b.upvoteCount - a.upvoteCount)
                     .map(question => (
                       <QuestionCard
