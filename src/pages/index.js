@@ -108,76 +108,179 @@ export default function Home() {
         </div>
 
         {/* Features Section */}
-        <div className="py-24 bg-gradient-to-br from-white to-gray-50">
-          <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-4xl font-bold text-center text-gray-900 mb-16">
-              Why Choose <span className="text-blue-600">AskAny</span>?
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              <Feature
-                title="Privacy First"
-                description="No registration, no identity sharing. Data automatically deleted after 7 days."
-                icon="🔒"
-              />
-              <Feature
-                title="Instant Setup"
-                description="Create a session with one click, share the link, and start collecting questions."
-                icon="⚡️"
-              />
-              <Feature
-                title="Open Source"
-                description="Transparent codebase, open to community contributions. Inspect and contribute on GitHub."
-                icon="💻"
-              />
+        <div className="py-12 bg-white">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center">
+              <h2 className="text-3xl font-extrabold text-gray-900 sm:text-4xl">
+                Features
+              </h2>
+              <p className="mt-4 text-xl text-gray-600">
+                Everything you need for interactive Q&A sessions
+              </p>
+            </div>
+
+            <div className="mt-12">
+              <div className="grid grid-cols-1 gap-8 sm:grid-cols-2">
+                {/* Spotlight Mode Feature */}
+                <div className="relative bg-purple-50 rounded-lg p-6 shadow-sm border border-purple-100">
+                  <div className="flex items-center">
+                    <div className="flex-shrink-0">
+                      <span className="text-purple-600 text-2xl">★</span>
+                    </div>
+                    <div className="ml-4">
+                      <h3 className="text-lg font-medium text-purple-900">
+                        Spotlight Mode
+                      </h3>
+                      <p className="mt-2 text-purple-700">
+                        Highlight important questions and manage focus in your Q&A session. Perfect for large audiences and prioritizing key discussions.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Anonymous Questions */}
+                <div className="relative bg-white rounded-lg p-6 shadow-sm border border-gray-200">
+                  <div className="flex items-center">
+                    <div className="flex-shrink-0">
+                      <svg className="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                      </svg>
+                    </div>
+                    <div className="ml-4">
+                      <h3 className="text-lg font-medium text-gray-900">
+                        Anonymous Questions
+                      </h3>
+                      <p className="mt-2 text-gray-600">
+                        Ask questions anonymously or with a nickname. No sign-up required.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Real-time Updates */}
+                <div className="relative bg-white rounded-lg p-6 shadow-sm border border-gray-200">
+                  <div className="flex items-center">
+                    <div className="flex-shrink-0">
+                      <svg className="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                      </svg>
+                    </div>
+                    <div className="ml-4">
+                      <h3 className="text-lg font-medium text-gray-900">
+                        Real-time Updates
+                      </h3>
+                      <p className="mt-2 text-gray-600">
+                        Questions and votes update instantly for all participants.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Upvoting System */}
+                <div className="relative bg-white rounded-lg p-6 shadow-sm border border-gray-200">
+                  <div className="flex items-center">
+                    <div className="flex-shrink-0">
+                      <svg className="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 15l7-7 7 7" />
+                      </svg>
+                    </div>
+                    <div className="ml-4">
+                      <h3 className="text-lg font-medium text-gray-900">
+                        Upvoting System
+                      </h3>
+                      <p className="mt-2 text-gray-600">
+                        Let participants vote on questions to highlight what matters most.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
 
-        {/* How It Works Section */}
-        <div className="py-24 bg-gradient-to-br from-gray-50 to-white">
-          <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-4xl font-bold text-center text-gray-900 mb-16">
-              How It <span className="text-blue-600">Works</span>
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-              <Step
-                number="1"
-                title="Create Session"
-                description="Start a new session instantly without registration."
-              />
-              <Step
-                number="2"
-                title="Share Link"
-                description="Share the session link with your participants."
-              />
-              <Step
-                number="3"
-                title="Manage Questions"
-                description="View, upvote, and mark questions as answered."
-              />
+        {/* How it Works Section */}
+        <div className="py-12 bg-gray-50">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center">
+              <h2 className="text-3xl font-extrabold text-gray-900 sm:text-4xl">
+                How it Works
+              </h2>
+            </div>
+
+            <div className="mt-12">
+              <div className="space-y-10">
+                <div className="flex items-center space-x-4">
+                  <div className="flex-shrink-0 bg-blue-600 rounded-full h-8 w-8 flex items-center justify-center text-white font-bold">
+                    1
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-medium text-gray-900">Create a Session</h3>
+                    <p className="mt-1 text-gray-600">Click "Create Session" to start a new Q&A session instantly.</p>
+                  </div>
+                </div>
+
+                <div className="flex items-center space-x-4">
+                  <div className="flex-shrink-0 bg-blue-600 rounded-full h-8 w-8 flex items-center justify-center text-white font-bold">
+                    2
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-medium text-gray-900">Share the Link</h3>
+                    <p className="mt-1 text-gray-600">Share the session link with your audience - no sign-up needed.</p>
+                  </div>
+                </div>
+
+                <div className="flex items-center space-x-4">
+                  <div className="flex-shrink-0 bg-blue-600 rounded-full h-8 w-8 flex items-center justify-center text-white font-bold">
+                    3
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-medium text-gray-900">Manage Questions</h3>
+                    <p className="mt-1 text-gray-600">Use spotlight mode to highlight important questions, mark answers, and keep discussions focused.</p>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
 
         {/* Use Cases Section */}
-        <div className="py-24 bg-gradient-to-br from-white to-gray-50">
-          <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-4xl font-bold text-center text-gray-900 mb-16">
-              Perfect <span className="text-blue-600">For</span>
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              <UseCase
-                title="Webinars & Events"
-                description="Collect questions from participants during live events."
-              />
-              <UseCase
-                title="Team Meetings"
-                description="Get anonymous feedback in office meetings."
-              />
-              <UseCase
-                title="Education"
-                description="Manage interactive Q&A in classes and seminars."
-              />
+        <div className="py-12 bg-white">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center">
+              <h2 className="text-3xl font-extrabold text-gray-900 sm:text-4xl">
+                Perfect For
+              </h2>
+            </div>
+
+            <div className="mt-12 grid grid-cols-1 gap-8 sm:grid-cols-2">
+              <div className="bg-white rounded-lg p-6 shadow-sm border border-gray-200">
+                <h3 className="text-lg font-medium text-gray-900">Conferences & Events</h3>
+                <p className="mt-2 text-gray-600">
+                  Manage audience questions efficiently during presentations and panels. Use spotlight mode to focus on key discussions.
+                </p>
+              </div>
+
+              <div className="bg-white rounded-lg p-6 shadow-sm border border-gray-200">
+                <h3 className="text-lg font-medium text-gray-900">Team Meetings</h3>
+                <p className="mt-2 text-gray-600">
+                  Collect and address team questions in an organized way. Perfect for all-hands and town halls.
+                </p>
+              </div>
+
+              <div className="bg-white rounded-lg p-6 shadow-sm border border-gray-200">
+                <h3 className="text-lg font-medium text-gray-900">Webinars</h3>
+                <p className="mt-2 text-gray-600">
+                  Handle participant questions smoothly in virtual events. Spotlight important topics for better engagement.
+                </p>
+              </div>
+
+              <div className="bg-white rounded-lg p-6 shadow-sm border border-gray-200">
+                <h3 className="text-lg font-medium text-gray-900">Workshops</h3>
+                <p className="mt-2 text-gray-600">
+                  Gather and address participant questions effectively during interactive sessions.
+                </p>
+              </div>
             </div>
           </div>
         </div>
