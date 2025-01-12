@@ -6,6 +6,7 @@ import SEO from '../../components/SEO';
 import QuestionForm from '../../components/QuestionForm';
 import QuestionCard from '../../components/QuestionCard';
 import BuyMeCoffeeButton from '../../components/BuyMeCoffeeButton';
+import toast from 'react-hot-toast';
 
 export default function SessionPage() {
   const router = useRouter();
@@ -97,7 +98,16 @@ export default function SessionPage() {
               </div>
               <div className="flex items-center gap-4">
                 <button
-                  onClick={() => navigator.clipboard.writeText(window.location.href)}
+                  onClick={() => {
+                    navigator.clipboard.writeText(window.location.href)
+                      .then(() => {
+                        toast.success('Session link copied to clipboard!');
+                      })
+                      .catch(err => {
+                        console.error('Failed to copy: ', err);
+                        toast.error('Failed to copy session link. Please try again.');
+                      });
+                  }}
                   className="text-blue-500 hover:text-blue-600 text-sm font-medium"
                 >
                   Copy Session Link

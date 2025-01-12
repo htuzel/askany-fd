@@ -30,13 +30,28 @@ export default function Home() {
     <>
       <SEO />
       <div className="min-h-screen bg-gradient-to-br from-gray-50 to-white">
+        {/* Header */}
+        <header className="fixed w-full top-0 bg-white/80 backdrop-blur-sm z-50 shadow-sm">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="flex justify-between items-center py-4">
+              <div className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">
+                AskAny
+              </div>
+              <div className="flex items-center gap-4">
+                <GitHubStars />
+                <BuyMeCoffeeButton />
+              </div>
+            </div>
+          </div>
+        </header>
+
         {/* Hero Section */}
         <div className="relative overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-br from-blue-50 to-indigo-50 opacity-50" />
           <div className="absolute inset-0">
             <div className="absolute inset-0 bg-grid-pattern opacity-[0.02]" />
           </div>
-          <div className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-32">
+          <div className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-32 mt-16">
             <div className="text-center">
               <h1 className="text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600 mb-6 animate-fade-in">
                 Create Anonymous Q&A Sessions<br />with One Click!
@@ -58,8 +73,19 @@ export default function Home() {
               </button>
 
               <div className="flex justify-center items-center gap-6 animate-fade-in-up">
-                <GitHubStars />
-                <BuyMeCoffeeButton />
+                <a 
+                  href="https://www.producthunt.com/posts/askany?embed=true&utm_source=badge-featured&utm_medium=badge&utm_souce=badge-askany" 
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <img 
+                    src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=774627&theme=light&t=1736573751317" 
+                    alt="AskAny - Free, Live Q&A session manager | Product Hunt" 
+                    style={{ width: '250px', height: '54px' }}
+                    width="250" 
+                    height="54" 
+                  />
+                </a>
               </div>
 
               <Stats />
@@ -146,11 +172,6 @@ export default function Home() {
         <div className="bg-gradient-to-br from-gray-50 to-white py-16">
           <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center">
-              <div className="flex justify-center items-center gap-6 mb-8">
-                <GitHubStars />
-                <BuyMeCoffeeButton />
-              </div>
-
               <div className="text-sm text-gray-500 space-y-4">
                 <p>
                   Created with ❤️ by{' '}
