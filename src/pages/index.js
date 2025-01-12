@@ -6,6 +6,7 @@ import Stats from '../components/Stats';
 import BuyMeCoffeeButton from '../components/BuyMeCoffeeButton';
 import GitHubStars from '../components/GitHubStars';
 import { v4 as uuidv4 } from 'uuid';
+import { GoogleAnalytics, sendGAEvent } from '@next/third-parties/google';
 
 export default function Home() {
   const router = useRouter();
@@ -26,14 +27,33 @@ export default function Home() {
   const createSession = async () => {
     try {
       setLoading(true);
+      // Track session creation attempt
+      sendGAEvent('event', 'session_created', {
+        category: 'Session',
+        action: 'Create'
+      });
+
       const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/sessions`, {
         clientId
       });
       const { slug } = response.data;
       
+      // Track successful session creation
+      sendGAEvent('event', 'session_creation_success', {
+        category: 'Session',
+        action: 'Create Success',
+        session_id: slug
+      });
+
       router.push(`/session/${slug}`);
     } catch (error) {
       console.error('Error creating session:', error);
+      // Track session creation error
+      sendGAEvent('event', 'session_creation_error', {
+        category: 'Session',
+        action: 'Create Error',
+        error_message: error.message
+      });
       alert('Error creating session. Please try again.');
     } finally {
       setLoading(false);
@@ -43,6 +63,7 @@ export default function Home() {
   return (
     <>
       <SEO />
+      <GoogleAnalytics gaId="G-Q5YLZD1Y8G" />
       <div className="min-h-screen bg-gradient-to-br from-gray-50 to-white">
         {/* Header */}
         <header className="fixed w-full top-0 bg-white/80 backdrop-blur-sm z-50 shadow-sm">

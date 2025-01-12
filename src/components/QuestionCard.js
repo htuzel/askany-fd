@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import axios from 'axios';
 import clsx from 'clsx';
+import { sendGAEvent } from '@next/third-parties/google';
 
 export default function QuestionCard({ 
   question, 
@@ -47,6 +48,21 @@ export default function QuestionCard({
     } finally {
       setIsMarking(false);
     }
+  };
+
+  const handleSpotlightClick = () => {
+    // Track spotlight button click with detailed metrics
+    sendGAEvent('event', 'spotlight_button_clicked', {
+      category: 'Question',
+      action: 'Spotlight Button Click',
+      session_id: sessionSlug,
+      question_id: question.id,
+      question_upvotes: question.upvote_count,
+      is_answered: question.is_answered,
+      is_anonymous: question.is_anonymous,
+      current_mode: sessionMode
+    });
+    onToggleSpotlight();
   };
 
   return (
@@ -137,7 +153,7 @@ export default function QuestionCard({
           )}
           {isOwner && sessionMode === 'spotlight' && !question.is_spotlight && (
             <button
-              onClick={onToggleSpotlight}
+              onClick={handleSpotlightClick}
               className={clsx(
                 "px-3 py-1 rounded-lg text-sm font-medium",
                 "bg-purple-100 text-purple-800",
