@@ -1,22 +1,36 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import axios from 'axios';
 import SEO from '../components/SEO';
 import Stats from '../components/Stats';
 import BuyMeCoffeeButton from '../components/BuyMeCoffeeButton';
 import GitHubStars from '../components/GitHubStars';
+import { v4 as uuidv4 } from 'uuid';
 
 export default function Home() {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
+  const [clientId] = useState(() => {
+    if (typeof window !== 'undefined') {
+      return localStorage.getItem('clientId') || uuidv4();
+    }
+    return null;
+  });
+
+  useEffect(() => {
+    if (clientId && typeof window !== 'undefined') {
+      localStorage.setItem('clientId', clientId);
+    }
+  }, [clientId]);
 
   const createSession = async () => {
     try {
       setLoading(true);
-      const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/sessions`);
+      const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/sessions`, {
+        clientId
+      });
       const { slug } = response.data;
       
-      localStorage.setItem('isOwner_' + slug, 'true');
       router.push(`/session/${slug}`);
     } catch (error) {
       console.error('Error creating session:', error);
