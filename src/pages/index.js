@@ -8,6 +8,52 @@ import GitHubStars from '../components/GitHubStars';
 import { v4 as uuidv4 } from 'uuid';
 import { GoogleAnalytics, sendGAEvent } from '@next/third-parties/google';
 
+// TypedWord component for the typing effect
+function TypedWord() {
+  const words = ['Free!', 'Private!', 'Disposable!', 'Anonymous!'];
+  const [currentWordIndex, setCurrentWordIndex] = useState(0);
+  const [currentText, setCurrentText] = useState('');
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [typingSpeed, setTypingSpeed] = useState(150);
+
+  useEffect(() => {
+    const word = words[currentWordIndex];
+    
+    const timer = setTimeout(() => {
+      if (!isDeleting) {
+        // Typing
+        if (currentText.length < word.length) {
+          setCurrentText(word.slice(0, currentText.length + 1));
+          setTypingSpeed(150);
+        } else {
+          // Wait before starting to delete
+          setTypingSpeed(2000);
+          setIsDeleting(true);
+        }
+      } else {
+        // Deleting
+        if (currentText.length > 0) {
+          setCurrentText(word.slice(0, currentText.length - 1));
+          setTypingSpeed(100);
+        } else {
+          setIsDeleting(false);
+          setCurrentWordIndex((prev) => (prev + 1) % words.length);
+          setTypingSpeed(150);
+        }
+      }
+    }, typingSpeed);
+
+    return () => clearTimeout(timer);
+  }, [currentText, isDeleting, currentWordIndex]);
+
+  return (
+    <span className="text-purple-600 min-w-[280px]">
+      {currentText || '\u00A0'}
+      <span className="animate-blink">|</span>
+    </span>
+  );
+}
+
 export default function Home() {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
@@ -89,7 +135,7 @@ export default function Home() {
           <div className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-32 mt-16">
             <div className="text-center">
               <h1 className="text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600 mb-6 animate-fade-in">
-                Create Anonymous Q&A Sessions<br />with One Click!
+                Create Q&A Sessions with <span className="text-purple-600">One Click</span>, designed to be <TypedWord />
               </h1>
               <p className="text-xl text-gray-600 mb-12 max-w-3xl mx-auto animate-fade-in-up">
                 Start instantly without registration or personal information.
