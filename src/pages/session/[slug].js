@@ -223,7 +223,7 @@ export default function SessionPage() {
         description="Join this live Q&A session to ask questions and vote on what matters most."
         noIndex={true}
       />
-      <GoogleAnalytics gaId="G-Q5YLZD1Y8G" />
+      <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID} />
       <div className="min-h-screen bg-gray-100 py-8 px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto">
           <div className="bg-white shadow-sm rounded-lg p-6 mb-8">

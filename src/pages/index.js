@@ -63,7 +63,7 @@ export default function Home() {
   return (
     <>
       <SEO />
-      <GoogleAnalytics gaId="G-Q5YLZD1Y8G" />
+      <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID} />
       <div className="min-h-screen bg-gradient-to-br from-gray-50 to-white">
         {/* Header */}
         <header className="fixed w-full top-0 bg-white/80 backdrop-blur-sm z-50 shadow-sm">
