@@ -132,7 +132,7 @@ export default function Home() {
           <div className="absolute inset-0">
             <div className="absolute inset-0 bg-grid-pattern opacity-[0.02]" />
           </div>
-          <div className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-32 mt-16">
+          <div className="relative max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-32 mt-16">
             <div className="text-center">
               <h1 className="text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600 mb-6 animate-fade-in">
                 Create Q&A Sessions with <span className="text-purple-600">One Click</span>, designed to be <TypedWord />
