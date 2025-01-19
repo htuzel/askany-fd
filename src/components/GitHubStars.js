@@ -9,10 +9,10 @@ export default function GitHubStars() {
     const fetchStars = async () => {
       try {
         const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/api/github/stars`);
-        setStars(response.data.stars);
+        setStars(response.data.stars || 4);
       } catch (error) {
         console.error('Error fetching GitHub stars:', error);
-        setStars(0);
+        setStars(4);
       } finally {
         setLoading(false);
       }
